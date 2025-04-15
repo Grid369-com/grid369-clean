@@ -13,10 +13,8 @@
             <p>AI Orchestrator Test</p>
         </div>
     </header>
-    
     <div class="container">
         <a href="/" class="btn" style="margin-bottom: 20px;">Back to Home</a>
-        
         <h2>AI Orchestrator Test</h2>
         <select id="endpoint">
             <option value="/api/nlu">Natural Language Understanding</option>
@@ -31,32 +29,27 @@
         <button id="submit" class="btn">Send to AI Orchestrator</button>
         <div id="response" class="response"></div>
     </div>
-    
     <footer>
         <div class="container">
             <p>&copy; 2025 Grid369. All rights reserved.</p>
         </div>
     </footer>
-    
     <script>
-        document.getElementById('submit').addEventListener('click', async () => {
-            const prompt = document.getElementById('prompt').value;
-            const endpoint = document.getElementById('endpoint').value;
-            const responseDiv = document.getElementById('response');
-            
-            responseDiv.innerHTML = 'Processing...';
-            
+        document.getElementById("submit").addEventListener("click", async () => {
+            const prompt = document.getElementById("prompt").value;
+            const endpoint = document.getElementById("endpoint").value;
+            const responseDiv = document.getElementById("response");
+            responseDiv.innerHTML = "Processing...";
             try {
-                const response = await fetch('/ai' + endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                const response = await fetch("/ai" + endpoint, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ prompt })
                 });
-                
                 const data = await response.json();
-                responseDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                responseDiv.innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
             } catch (error) {
-                responseDiv.innerHTML = 'Error: ' + error.message;
+                responseDiv.innerHTML = "Error: " + error.message;
             }
         });
     </script>
